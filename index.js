@@ -1,5 +1,6 @@
 var timerEl = document.querySelector(".timers")
-console.log(timerEl)
+var startQuizEl = document.querySelector("button")
+
 //keeps check on how much time is left
 function timer(){
     var count = 10;
@@ -13,4 +14,4 @@ function timer(){
     },1000)
 
 }
-timer()
+startQuizEl.addEventListener("click",timer)
