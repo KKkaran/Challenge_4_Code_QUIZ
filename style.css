@@ -1,0 +1,29 @@
+header{
+    text-align: center;
+    padding: 10px;
+}
+.main-wrap{
+    border: 2px solid red;
+    width: 75%;
+    margin: auto;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+}
+.top-info{
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid red;
+}
+.top-info > *{
+    padding: 10px;
+}
+.questionArea{
+    flex: 1;
+    border: 2px solid yellow;
+    padding: 20px;
+}
+.innerarea{
+    border: 2px solid red;
+
+}
