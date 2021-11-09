@@ -52,3 +52,30 @@ body {
 .innerarea {
   border: 2px solid red;
 } */
+.options {
+  padding: 10px;
+  background-color: purple;
+  color: white;
+  font-weight: bold;
+  width: 20%;
+  margin: 10px;
+  border-radius: 10px;
+}
+.options:hover {
+  background-color: red;
+}
+.questionWrapper {
+  margin: 60px;
+  border: 2px solid green;
+}
+.questionEl {
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 40px;
+}
+.answerDisplay {
+  color: red;
+  border-top: 2px solid green;
+  margin: 60px;
+  margin-top: -50px;
+}
