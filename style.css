@@ -62,11 +62,14 @@ body {
   border-radius: 10px;
 }
 .options:hover {
-  background-color: red;
+  background-color: orchid;
 }
-.questionWrapper {
+#questionWrapper {
   margin: 60px;
   border: 2px solid green;
+}
+#questionWrapper > p {
+  text-align: left;
 }
 .questionEl {
   font-size: 25px;
