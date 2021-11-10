@@ -39,6 +39,7 @@ body {
   border: none;
   border-radius: 10px;
   font-size: 15px;
+  cursor: pointer;
 }
 .mainView button:hover {
   background-color: orchid;
