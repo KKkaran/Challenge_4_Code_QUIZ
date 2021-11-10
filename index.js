@@ -94,21 +94,19 @@ function displayResult(){
     document.querySelector(".mainView").replaceWith(resultWrapper);
 
 }
-
+reload();
 //scoring the score locally
 function saveScore(){
-
-    //console.log(scoreObject.playerName,scoreObject.playerScore)
     localStorage.setItem("scores",JSON.stringify(scoresLocally))
+    reload()
 }
-// function reload(){
-//     var records = localStorage.getItem("scores")
-//     if(!records){
-//         return false;
-//     }
-//     var playerScores = JSON.parse(records)
-//     scoresLocally = playerScores  
-// }
+function reload(){
+    var records = localStorage.getItem("scores")
+    if(!records){
+        return false;
+    }
+    scoresLocally = JSON.parse(records)
+}
 
 
 function checkMyAnswer(answer,id){
@@ -153,13 +151,9 @@ mainWrapEl.addEventListener("click",function(event){
             playerName:event.target.closest(".resultEl").querySelector("input").value,
             playerScore: score-1
         }
-
-        console.log(scoreObject)
         scoresLocally.push(scoreObject)
-        console.log(scoresLocally)
         saveScore();
-        // scoresLocally.push(scoreObject)
-        // saveScore(scoresLocally);
+        
     }
 })
 
