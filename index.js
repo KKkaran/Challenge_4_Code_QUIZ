@@ -1,6 +1,7 @@
 var timerEl = document.querySelector(".timers")
 var startQuizEl = document.querySelector("button")
 var mainWrapEl = document.querySelector(".main-wrap")
+var highscoresmenu = document.querySelector(".highscores")
 var o = -1; //o increases when a question is displayed
 var score = 90;
 var start;
@@ -166,6 +167,9 @@ mainWrapEl.addEventListener("click",function(event){
     }else if(event.target.matches(".highscores")){
         showHighScores();
     }
+})
+highscoresmenu.addEventListener("click",function(){
+    document.querySelector(".modalbody").style.display = "block"
 })
 
 //
