@@ -1,7 +1,10 @@
 var timerEl = document.querySelector(".timers")
 var startQuizEl = document.querySelector("button")
 var mainWrapEl = document.querySelector(".main-wrap")
-var o = -1;
+var o = -1; //o increases when a question is displayed
+var score = 90;
+var start;
+var scoresLocally = []; //list of all the playerScore Objects
 var listQUestions = [//list of question objects with correct answer
     {
         question:"A very important tools ",
@@ -28,46 +31,28 @@ var listQUestions = [//list of question objects with correct answer
 ]
 //keeps check on how much time is left 
 function timer(){
-     var count = 10;
-    for(v in listQUestions){
-
-        for(x in listQUestions[v].options){
-            console.log(listQUestions[v].options[x])
-        }
-        
-    }
-
+    
     displayQuestions();//user is displayed with questions
-    var start = setInterval(function (){
-
-        //console.log(count--)
-        timerEl.innerHTML = count--;
-        if(count === 0){
+    
+    start = setInterval(function (){
+        timerEl.innerHTML = score--;
+        if(score === 0){
             clearInterval(start)
         }
     },1000)
-
 }
-
+//dynamically create div with question and options inside of it
+//replace the main screen with the question
 function displayQuestions(){
-    //dynamically create div with question and options inside of it
-    //replace the main screen with the question
-
     o++;
-
     var questionWrapperEl = document.createElement("div");
     questionWrapperEl.className = "mainView"
     questionWrapperEl.id = "questionWrapper";
-    
     var questionEl = document.createElement("p");
     questionEl.className = "questionEl"
-
     var optionsEl = document.createElement("ol");
     optionsEl.className = "optionsEl"
-    
-
-    
-        //looping through questionObject List
+//looping through questionObject List
     if(o < listQUestions.length){
         questionEl.textContent = listQUestions[o].question;
         for(i in listQUestions[o].options){
@@ -80,9 +65,51 @@ function displayQuestions(){
     questionWrapperEl.append(questionEl,optionsEl)
     document.querySelector(".mainView").replaceWith(questionWrapperEl);
     }else if(o === listQUestions.length){
-        console.log("showResult")
+        clearInterval(start)
+        console.log(`The final score is: ${score+1}`)
+        displayResult()
     }
 }
+function displayResult(){
+    var resultWrapper = document.createElement("div")
+    resultWrapper.className = "resultEl"
+    var alldone = document.createElement("h1")
+    alldone.textContent = "ALL DONE!!"
+    var finalScore = document.createElement("p")
+    finalScore.textContent = `Your final Score: ${score+1}`
+
+    var inputField = document.createElement("input")
+    inputField.className = "initials"
+    inputField.setAttribute("type","text")
+    inputField.setAttribute("name","name")
+    inputField.setAttribute("placeholder","Your initials go here")
+    inputField.setAttribute("required","true")
+    var submitName = document.createElement("button")
+    submitName.setAttribute("type","submit")
+    submitName.className = "submitName"
+    submitName.textContent = "Submit"
+
+
+    resultWrapper.append(alldone,finalScore,inputField,submitName)
+    document.querySelector(".mainView").replaceWith(resultWrapper);
+
+}
+
+//scoring the score locally
+function saveScore(){
+
+    //console.log(scoreObject.playerName,scoreObject.playerScore)
+    localStorage.setItem("scores",JSON.stringify(scoresLocally))
+}
+// function reload(){
+//     var records = localStorage.getItem("scores")
+//     if(!records){
+//         return false;
+//     }
+//     var playerScores = JSON.parse(records)
+//     scoresLocally = playerScores  
+// }
+
 
 function checkMyAnswer(answer,id){
     //this will check the answer
@@ -109,17 +136,31 @@ function checkMyAnswer(answer,id){
     },700) 
 
 }
+
+
+
+
+
+
 startQuizEl.addEventListener("click",timer)//starting the quiz
-
-
-
-// mainWrapEl.on("click",".options",function(){
-//     console.log($(this).value)
-// })
-
 mainWrapEl.addEventListener("click",function(event){
     if(event.target.matches(".options")){
         var text  = event.target.textContent;      
         checkMyAnswer(text.substring(3,text.length),parseInt(event.target.parentNode.getAttribute("id")))
+    }else if(event.target.matches(".submitName")){
+        //console.log(event.target.closest(".resultEl").querySelector("input").value)
+        var scoreObject = {
+            playerName:event.target.closest(".resultEl").querySelector("input").value,
+            playerScore: score-1
+        }
+
+        console.log(scoreObject)
+        scoresLocally.push(scoreObject)
+        console.log(scoresLocally)
+        saveScore();
+        // scoresLocally.push(scoreObject)
+        // saveScore(scoresLocally);
     }
 })
+
+//
