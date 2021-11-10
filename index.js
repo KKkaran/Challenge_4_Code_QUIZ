@@ -117,6 +117,7 @@ function checkMyAnswer(answer,id){
        text = "Correct!"
     }else{
         text = "Wrong!"
+        score-=10;
     }
     var answer = document.createElement("div")
     answer.className = "answerDisplay"
@@ -134,7 +135,10 @@ function checkMyAnswer(answer,id){
     },700) 
 
 }
-
+function showHighScores(){
+    //SHOWS THE SCORE MENU IN MODAL ....USE BOOTSTRAP
+    
+}
 
 
 
@@ -147,13 +151,20 @@ mainWrapEl.addEventListener("click",function(event){
         checkMyAnswer(text.substring(3,text.length),parseInt(event.target.parentNode.getAttribute("id")))
     }else if(event.target.matches(".submitName")){
         //console.log(event.target.closest(".resultEl").querySelector("input").value)
+        if(!event.target.closest(".resultEl").querySelector("input").value){
+            alert("You can't leave the Initials empty")
+            return;
+        }
         var scoreObject = {
             playerName:event.target.closest(".resultEl").querySelector("input").value,
             playerScore: score-1
         }
         scoresLocally.push(scoreObject)
-        saveScore();
+        saveScore(); 
+        location.reload();//this will refresh the page for the user once the score is updated
         
+    }else if(event.target.matches(".highscores")){
+        showHighScores();
     }
 })
 
