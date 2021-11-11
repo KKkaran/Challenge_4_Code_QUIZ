@@ -114,10 +114,11 @@ body {
   padding: 20px;
   border: 2px solid forestgreen;
   width: 60%;
-  margin: 20% auto;
+  margin: 8% auto;
 }
 .modalContent p {
   background: linear-gradient(rgb(70, 157, 185), blue);
   color: white;
   padding: 7px;
+  margin-bottom: -10px;
 }

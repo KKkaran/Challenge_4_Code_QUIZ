@@ -168,8 +168,15 @@ mainWrapEl.addEventListener("click",function(event){
         showHighScores();
     }
 })
+//open the modal
 highscoresmenu.addEventListener("click",function(){
     document.querySelector(".modalbody").style.display = "block"
+})
+
+
+//close the modal
+document.querySelector(".closebtn").addEventListener("click",function(){
+    document.querySelector(".modalbody").style.display = "none"
 })
 
 //
