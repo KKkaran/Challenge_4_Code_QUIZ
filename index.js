@@ -2,6 +2,7 @@ var timerEl = document.querySelector(".timers")
 var startQuizEl = document.querySelector("button")
 var mainWrapEl = document.querySelector(".main-wrap")
 var highscoresmenu = document.querySelector(".highscores")
+var scoreDisplayMenu = document.querySelector(".displayingScores")
 var o = -1; //o increases when a question is displayed
 var score = 90;
 var start;
@@ -95,18 +96,24 @@ function displayResult(){
     document.querySelector(".mainView").replaceWith(resultWrapper);
 
 }
-reload();
 //scoring the score locally
 function saveScore(){
     localStorage.setItem("scores",JSON.stringify(scoresLocally))
-    reload()
 }
 function reload(){
     var records = localStorage.getItem("scores")
     if(!records){
+        scoreDisplayMenu.innerHTML = "<p>No scores available</p>"
         return false;
     }
     scoresLocally = JSON.parse(records)
+
+    scoresLocally.forEach(function(c){
+        var p = document.createElement("p")
+        p.textContent = c.playerName + " - " + c.playerScore
+
+        scoreDisplayMenu.appendChild(p)
+    })
 }
 
 
@@ -172,11 +179,23 @@ mainWrapEl.addEventListener("click",function(event){
 highscoresmenu.addEventListener("click",function(){
     document.querySelector(".modalbody").style.display = "block"
 })
-
-
-//close the modal
+//close the modal on close button clicked
 document.querySelector(".closebtn").addEventListener("click",function(){
     document.querySelector(".modalbody").style.display = "none"
 })
+//when clicked outside the menu the scores disappear
+document.querySelector(".modalbody").addEventListener("click",function(e){
+    if(e.target === document.getElementById("modal")){
+        document.querySelector(".modalbody").style.display = "none"
+    }
+})
+//clears the highscores when clear button clicked
+//clearscores
+document.querySelector(".clearscores").addEventListener("click",function(){
+    document.querySelector(".modalbody").style.display = "none"
+    localStorage.clear();
+    reload();
+    console.log('cleareed')
+})
 
-//
+reload();//runs when page loads so as to grab the scores from local storage and populate the high scores menu

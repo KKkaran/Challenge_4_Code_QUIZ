@@ -122,3 +122,10 @@ body {
   padding: 7px;
   margin-bottom: -10px;
 }
+.modalContent button {
+  margin-top: 20px;
+  border-radius: 10px;
+  background-color: purple;
+  color: white;
+  padding: 10px;
+}
