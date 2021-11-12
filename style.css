@@ -24,6 +24,8 @@ body {
 .highscores {
   color: rgb(223, 25, 216);
   font-weight: bold;
+  background-color: white;
+  border: none;
 }
 .highscores:hover {
   color: rgb(114, 7, 114);
@@ -115,6 +117,8 @@ body {
   border: 2px solid forestgreen;
   width: 60%;
   margin: 8% auto;
+  animation-name: modalopen;
+  animation-duration: 1s;
 }
 .modalContent p {
   background: linear-gradient(rgb(70, 157, 185), blue);
@@ -128,4 +132,13 @@ body {
   background-color: purple;
   color: white;
   padding: 10px;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

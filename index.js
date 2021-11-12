@@ -1,9 +1,10 @@
 var timerEl = document.querySelector(".timers")
-var startQuizEl = document.querySelector("button")
+var startQuizEl = document.querySelector(".start")
 var mainWrapEl = document.querySelector(".main-wrap")
 var highscoresmenu = document.querySelector(".highscores")
 var scoreDisplayMenu = document.querySelector(".displayingScores")
 var o = -1; //o increases when a question is displayed
+var boolean4Scores = true;
 var score = 90;
 var start;
 var scoresLocally = []; //list of all the playerScore Objects
@@ -33,7 +34,8 @@ var listQUestions = [//list of question objects with correct answer
 ]
 //keeps check on how much time is left 
 function timer(){
-    
+    boolean4Scores = false
+
     displayQuestions();//user is displayed with questions
     
     start = setInterval(function (){
@@ -73,6 +75,7 @@ function displayQuestions(){
     }
 }
 function displayResult(){
+    
     var resultWrapper = document.createElement("div")
     resultWrapper.className = "resultEl"
     var alldone = document.createElement("h1")
@@ -104,10 +107,14 @@ function reload(){
     var records = localStorage.getItem("scores")
     if(!records){
         scoreDisplayMenu.innerHTML = "<p>No scores available</p>"
+        document.querySelector(".clearscores").disabled = true
+        document.querySelector(".clearscores").style.background = "grey"
+        
         return false;
     }
     scoresLocally = JSON.parse(records)
-
+    document.querySelector(".clearscores").disabled = false
+    document.querySelector(".clearscores").style.background = "purple"
     scoresLocally.forEach(function(c){
         var p = document.createElement("p")
         p.textContent = c.playerName + " - " + c.playerScore
@@ -115,7 +122,12 @@ function reload(){
         scoreDisplayMenu.appendChild(p)
     })
 }
-
+//when user ends the game he sees his name pop up in the high score menu
+function UpdateScoresRealTime(){
+    scoreDisplayMenu.innerHTML = ""
+    reload();
+    
+}
 
 function checkMyAnswer(answer,id){
     //this will check the answer
@@ -143,15 +155,6 @@ function checkMyAnswer(answer,id){
     },700) 
 
 }
-function showHighScores(){
-    //SHOWS THE SCORE MENU IN MODAL ....USE BOOTSTRAP
-    
-}
-
-
-
-
-
 startQuizEl.addEventListener("click",timer)//starting the quiz
 mainWrapEl.addEventListener("click",function(event){
     if(event.target.matches(".options")){
@@ -169,33 +172,42 @@ mainWrapEl.addEventListener("click",function(event){
         }
         scoresLocally.push(scoreObject)
         saveScore(); 
-        location.reload();//this will refresh the page for the user once the score is updated
-        
-    }else if(event.target.matches(".highscores")){
-        showHighScores();
+        document.querySelector(".modalbody").style.display = "block"
+        UpdateScoresRealTime();
+       
     }
 })
 //open the modal
 highscoresmenu.addEventListener("click",function(){
-    document.querySelector(".modalbody").style.display = "block"
+    if(boolean4Scores){
+        document.querySelector(".modalbody").style.display = "block"
+    }else{
+        alert("You need to finish the Quiz and Submit first!!")
+    }
 })
 //close the modal on close button clicked
 document.querySelector(".closebtn").addEventListener("click",function(){
-    document.querySelector(".modalbody").style.display = "none"
+    //document.querySelector(".modalbody").style.display = "none"
+    location.reload()
 })
 //when clicked outside the menu the scores disappear
-document.querySelector(".modalbody").addEventListener("click",function(e){
-    if(e.target === document.getElementById("modal")){
-        document.querySelector(".modalbody").style.display = "none"
-    }
-})
+// document.querySelector(".modalbody").addEventListener("click",function(e){
+//     if(e.target === document.getElementById("modal")){
+//         document.querySelector(".modalbody").style.display = "none"
+//     }
+// })
 //clears the highscores when clear button clicked
 //clearscores
 document.querySelector(".clearscores").addEventListener("click",function(){
-    document.querySelector(".modalbody").style.display = "none"
+    //document.querySelector(".modalbody").style.display = "none"
     localStorage.clear();
     reload();
     console.log('cleareed')
 })
 
 reload();//runs when page loads so as to grab the scores from local storage and populate the high scores menu
+
+
+
+
+//function to sort the values
