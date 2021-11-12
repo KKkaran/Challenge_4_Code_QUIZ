@@ -34,7 +34,13 @@ body {
   /*this is the view where the user clicks and the quiz begins*/
   text-align: center;
 }
-.mainView button {
+.initials {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 7px;
+}
+.mainView button,
+.submitName {
   background-color: purple;
   color: white;
   padding: 10px;

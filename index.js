@@ -5,7 +5,7 @@ var highscoresmenu = document.querySelector(".highscores")
 var scoreDisplayMenu = document.querySelector(".displayingScores")
 var o = -1; //o increases when a question is displayed
 var boolean4Scores = true;
-var score = 90;
+var score = 10;
 var start;
 var scoresLocally = []; //list of all the playerScore Objects
 var listQUestions = [//list of question objects with correct answer
@@ -39,8 +39,9 @@ function timer(){
     displayQuestions();//user is displayed with questions
     
     start = setInterval(function (){
-        timerEl.innerHTML = score--;
-        if(score === 0){
+        timerEl.innerHTML = Math.max(0,--score);
+        if(score <= 0){
+            displayResult("No Time Left");
             clearInterval(start)
         }
     },1000)
@@ -66,22 +67,23 @@ function displayQuestions(){
             optionsEl.id = parseInt(o)
             optionsEl.append(option)
         }
-    questionWrapperEl.append(questionEl,optionsEl)
-    document.querySelector(".mainView").replaceWith(questionWrapperEl);
+        questionWrapperEl.append(questionEl,optionsEl)
+        document.querySelector(".mainView").replaceWith(questionWrapperEl);
     }else if(o === listQUestions.length){
         clearInterval(start)
-        console.log(`The final score is: ${score+1}`)
-        displayResult()
+        console.log(`The final score is: ${score}`)
+        displayResult("You answered all the questions!!")
     }
 }
-function displayResult(){
+function displayResult(whyText){
     
+    var b = whyText
     var resultWrapper = document.createElement("div")
     resultWrapper.className = "resultEl"
     var alldone = document.createElement("h1")
-    alldone.textContent = "ALL DONE!!"
+    alldone.textContent = "Game Over!!" + b
     var finalScore = document.createElement("p")
-    finalScore.textContent = `Your final Score: ${score+1}`
+    finalScore.textContent = `Your final Score: ${Math.max(0,score)}`
 
     var inputField = document.createElement("input")
     inputField.className = "initials"
@@ -117,7 +119,7 @@ function reload(){
     document.querySelector(".clearscores").style.background = "purple"
     scoresLocally.forEach(function(c){
         var p = document.createElement("p")
-        p.textContent = c.playerName + " - " + c.playerScore
+        p.textContent = c.playerName + " - " + Math.max(0,c.playerScore)
 
         scoreDisplayMenu.appendChild(p)
     })
@@ -135,24 +137,32 @@ function checkMyAnswer(answer,id){
     var text = "";
     if(answer === listQUestions[parseInt(id)].rightAnswer()){
        text = "Correct!"
+       score+=5;
     }else{
         text = "Wrong!"
         score-=10;
     }
-    var answer = document.createElement("div")
-    answer.className = "answerDisplay"
-    answer.innerHTML = `<h1>${text}</h1>`
-    mainWrapEl.appendChild(answer)
+
+    if(score <= 0){
+        score = 0;   
+    }else{
+        console.log("sdsdsdsd")
+        var answer = document.createElement("div")
+        answer.className = "answerDisplay"
+        answer.innerHTML = `<h1>${text}</h1>`
+        mainWrapEl.appendChild(answer)
+        
+        var t = 0
+        var wait = setInterval(function(){
+            t++;
+            displayQuestions();
+            answer.remove()
+            if(t === 1){
+                clearInterval(wait)
+            }
+        },700) 
+    }
     
-    var t = 0
-    var wait = setInterval(function(){
-        t++;
-        displayQuestions();
-        answer.remove()
-        if(t === 1){
-            clearInterval(wait)
-        }
-    },700) 
 
 }
 startQuizEl.addEventListener("click",timer)//starting the quiz
@@ -168,7 +178,7 @@ mainWrapEl.addEventListener("click",function(event){
         }
         var scoreObject = {
             playerName:event.target.closest(".resultEl").querySelector("input").value,
-            playerScore: score-1
+            playerScore: score
         }
         scoresLocally.push(scoreObject)
         saveScore(); 
