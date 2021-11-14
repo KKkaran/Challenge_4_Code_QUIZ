@@ -108,7 +108,7 @@ body {
   margin-top: -50px;
   font-style: italic;
 }
-.modalbody {
+.modalbody,.intructClass{
   border: 2px solid hotpink;
   width: 75%;
   margin: auto;
@@ -121,7 +121,7 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.modalContent {
+.modalContent, .instructbody {
   background-color: thistle;
   padding: 20px;
   border: 2px solid forestgreen;
@@ -161,6 +161,34 @@ body {
   display: inline-block;
   margin-top: 10px;
   border-radius: 10px;
+}
+.instructbody{
+  background: linear-gradient(#7b2a2a, #3f3fb6);
+  color: white;
+  padding: 0;
+  text-align: center;
+
+}
+.instructbody h2{
+  background: orange;
+  padding: 5px;
+  margin-top: 0;
+  color: black;
+}
+.instructbody p {
+  padding: 5px;
+  margin: 2px;
+}
+.cross{
+  font-size: 20px;
+  color: white;
+  float:right;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+.cross:hover{
+  color: black;
+  cursor: pointer;
 }
 @media (max-width: 1270px) {
   .resultEl {
@@ -217,19 +245,24 @@ body {
   .whygameover {
     font-size: 16px;
   }
+
   .main-wrap {
     height: 64.3vh;
     padding: 20px;
   }
+
   .submitName {
     padding: 7px;
   }
+
   .options {
     width: 80%;
   }
+
   #questionWrapper p {
     font-size: 17px;
   }
+
   #questionWrapper {
     width: 80%;
     margin: 10px auto 60px 10px;

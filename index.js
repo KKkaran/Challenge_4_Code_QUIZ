@@ -227,8 +227,17 @@ document.querySelector(".clearscores").addEventListener("click",function(){
     console.log('cleareed')
 })
 document.querySelector(".instructions").addEventListener("click",function(){
-    //document.querySelector(".modalbody").style.display = "none"
+    document.querySelector(".intructClass").style.display = "block"
     console.log('cleareed')
+})
+document.querySelector(".intructClass").addEventListener("click",function(e){
+    if(e.target === document.getElementById("instruct")){
+        document.querySelector(".intructClass").style.display = "none"
+     }
+})
+document.querySelector(".cross").addEventListener("click",function(e){
+    document.querySelector(".intructClass").style.display = "none"
+
 })
 
 reload();//runs when page loads so as to grab the scores from local storage and populate the high scores menu
