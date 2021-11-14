@@ -34,6 +34,7 @@ body {
 .highscores:hover {
   color: rgb(114, 7, 114);
 }
+
 .mainView {
   /*this is the view where the user clicks and the quiz begins*/
   text-align: center;
@@ -43,7 +44,7 @@ body {
   margin: 5px;
   border-radius: 7px;
 }
-.mainView button,
+.start,
 .submitName {
   background-color: purple;
   color: white;
@@ -150,6 +151,16 @@ body {
   to {
     opacity: 1;
   }
+}
+
+.instructions {
+  background: linear-gradient(red, blue);
+  color: white;
+  font-size: 25px;
+  padding: 10px;
+  display: inline-block;
+  margin-top: 10px;
+  border-radius: 10px;
 }
 @media (max-width: 1270px) {
   .resultEl {

@@ -226,6 +226,10 @@ document.querySelector(".clearscores").addEventListener("click",function(){
     reload();
     console.log('cleareed')
 })
+document.querySelector(".instructions").addEventListener("click",function(){
+    //document.querySelector(".modalbody").style.display = "none"
+    console.log('cleareed')
+})
 
 reload();//runs when page loads so as to grab the scores from local storage and populate the high scores menu
 
