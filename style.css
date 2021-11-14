@@ -6,17 +6,16 @@ body {
   font-family: sans-serif;
 }
 .main-wrap {
-  border: 2px solid red;
   width: 75%;
   margin: auto;
   height: 60vh;
   display: flex;
   flex-direction: column;
+  box-shadow: 5px 5px 15px 15px rgb(160, 157, 157);
 }
 .top-info {
   display: flex;
   justify-content: space-between;
-  border: 2px solid red;
 }
 .top-info > * {
   padding: 10px;
@@ -26,6 +25,11 @@ body {
   font-weight: bold;
   background-color: white;
   border: none;
+  font-size: 15px;
+}
+.timers {
+  font-weight: bold;
+  font-size: 20px;
 }
 .highscores:hover {
   color: rgb(114, 7, 114);
@@ -76,7 +80,6 @@ body {
 }
 #questionWrapper {
   margin: 60px;
-  border: 2px solid green;
 }
 #questionWrapper > p {
   text-align: left;
@@ -85,7 +88,7 @@ body {
   margin: 60px auto auto 150px;
 }
 .resultEl h1 {
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
 }
 .resultEl p {
@@ -146,5 +149,78 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+@media (max-width: 1270px) {
+  .resultEl {
+    /* margin: 60px auto auto 150px;
+    border: 1px solid red; */
+    margin: 60px auto;
+  }
+  .options {
+    width: 30%;
+  }
+  #questionWrapper p {
+    font-size: 20px;
+  }
+}
+@media (max-width: 910px) {
+  .resultEl {
+    /* margin: 60px auto auto 150px;
+    border: 1px solid red; */
+    width: 75%;
+  }
+  .whygameover {
+    display: block;
+  }
+  .options {
+    width: 55%;
+  }
+  #questionWrapper p {
+    font-size: 20px;
+  }
+}
+@media (max-width: 850px) {
+  .whygameover {
+    font-size: 25px;
+  }
+  .options {
+    width: 50%;
+  }
+  #questionWrapper p {
+    font-size: 20px;
+  }
+}
+@media (max-width: 710px) {
+  .whygameover {
+    font-size: 20px;
+  }
+  .options {
+    width: 50%;
+  }
+  #questionWrapper p {
+    font-size: 20px;
+  }
+}
+@media (max-width: 575px) {
+  .whygameover {
+    font-size: 16px;
+  }
+  .main-wrap {
+    height: 64.3vh;
+    padding: 20px;
+  }
+  .submitName {
+    padding: 7px;
+  }
+  .options {
+    width: 80%;
+  }
+  #questionWrapper p {
+    font-size: 17px;
+  }
+  #questionWrapper {
+    width: 80%;
+    margin: 10px auto 60px 10px;
   }
 }

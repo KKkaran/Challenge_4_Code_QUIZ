@@ -5,12 +5,12 @@ var highscoresmenu = document.querySelector(".highscores")
 var scoreDisplayMenu = document.querySelector(".displayingScores")
 var o = -1; //o increases when a question is displayed
 var boolean4Scores = true;
-var score = 10;
+var score = 60;
 var start;
 var scoresLocally = []; //list of all the playerScore Objects
 var listQUestions = [//list of question objects with correct answer
     {
-        question:"A very important tools ",
+        question:"What is the element for Header? ",
         options:["h1","p","footer","img"],
         rightAnswer : function(){
             return this.options[0]}
@@ -40,6 +40,13 @@ function timer(){
     
     start = setInterval(function (){
         timerEl.innerHTML = Math.max(0,--score);
+        if(score > 20){
+            timerEl.style.color = "green"
+        }else if(score > 10){
+            timerEl.style.color = "goldenrod"
+        }else{
+            timerEl.style.color = "red"
+        }
         if(score <= 0){
             displayResult("No Time Left");
             clearInterval(start)
@@ -81,7 +88,8 @@ function displayResult(whyText){
     var resultWrapper = document.createElement("div")
     resultWrapper.className = "resultEl"
     var alldone = document.createElement("h1")
-    alldone.textContent = "Game Over!!" + b
+    
+    alldone.innerHTML = "Game Over!!" + `<span class="whygameover">${b}</span>`
     var finalScore = document.createElement("p")
     finalScore.textContent = `Your final Score: ${Math.max(0,score)}`
 
@@ -135,12 +143,15 @@ function checkMyAnswer(answer,id){
     //this will check the answer
     //console.log(listQUestions[id])
     var text = "";
+    var color = ""
     if(answer === listQUestions[parseInt(id)].rightAnswer()){
        text = "Correct!"
+       color = "green"
        score+=5;
     }else{
         text = "Wrong!"
         score-=10;
+        color = "red"
     }
 
     if(score <= 0){
@@ -150,6 +161,7 @@ function checkMyAnswer(answer,id){
         var answer = document.createElement("div")
         answer.className = "answerDisplay"
         answer.innerHTML = `<h1>${text}</h1>`
+        answer.style.color = color
         mainWrapEl.appendChild(answer)
         
         var t = 0
