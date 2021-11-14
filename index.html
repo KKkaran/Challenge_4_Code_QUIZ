@@ -4,8 +4,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <title>Quiz</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/images/quiz.png" type="image/x-icon">
+    <title>Test Your JS Knowledge</title>
 </head>
 <body>
 
@@ -16,7 +17,7 @@
     <main>
         <div class="main-wrap">
             <div class="top-info">
-                <span class="highscores">View HighScores</span>
+                <button class="highscores">View HighScores</button>
                 <span class="timers">Time:00</span>
             </div>
 
@@ -28,11 +29,40 @@
                     <br>Keep in mind that incorrect answers will penalize your score/time
                     <br>                        by ten seconds!
                 </p>
-                <button>Start Quiz</button>
-            
+                <button class="start">Start Quiz</button><br>
+
+                <button class="instructions">Intructions</button>
+
             </div>
            
         </div>
+
+        <div id="modal" class="modalbody">
+            <div class="modalContent">
+
+                <h1>High Scores</h1>
+                <div class="displayingScores">
+                    
+                </div>
+                <div>
+                    <button class="closebtn">Go Back</button>
+                    <button class="clearscores">Clear HighScores</button>
+            
+                </div>
+            </div>
+        </div>
+        <div id="instruct" class="intructClass">
+            <div class="instructbody">
+                <span class="cross">&times;</span>
+                <h2>Instructions Page</h2>
+                <p>On the Click of button, QUIZ will begin</p>
+                <p>Every right answer gives 5 extra seconds</p>
+                <p>Every wrong asnwer deducts 10 seconds</p>
+                <p>Try to answer all questions before timer runs OUT</p>
+            
+            </div>
+        </div>
+
     </main>
 
     <footer>
@@ -40,7 +70,7 @@
     </footer>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script src="index.js"></script>
+    <script src="assets/js/index.js"></script>
 
 </body>
 </html>

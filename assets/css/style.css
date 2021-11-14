@@ -1,0 +1,270 @@
+header {
+  text-align: center;
+  padding: 10px;
+}
+body {
+  font-family: sans-serif;
+}
+.main-wrap {
+  width: 75%;
+  margin: auto;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 5px 15px 15px rgb(160, 157, 157);
+}
+.top-info {
+  display: flex;
+  justify-content: space-between;
+}
+.top-info > * {
+  padding: 10px;
+}
+.highscores {
+  color: rgb(223, 25, 216);
+  font-weight: bold;
+  background-color: white;
+  border: none;
+  font-size: 15px;
+}
+.timers {
+  font-weight: bold;
+  font-size: 20px;
+}
+.highscores:hover {
+  color: rgb(114, 7, 114);
+}
+
+.mainView {
+  /*this is the view where the user clicks and the quiz begins*/
+  text-align: center;
+}
+.initials {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 7px;
+}
+.start,
+.submitName {
+  background-color: purple;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.mainView button:hover {
+  background-color: orchid;
+  font-weight: bold;
+}
+/* .questionArea {
+  flex: 1;
+  border: 2px solid yellow;
+  padding: 20px;
+}
+.innerarea {
+  border: 2px solid red;
+} */
+.options {
+  padding: 10px;
+  background-color: purple;
+  color: white;
+  font-weight: bold;
+  width: 20%;
+  margin: 10px;
+  border-radius: 10px;
+  text-align: left;
+}
+.options:hover {
+  background-color: orchid;
+}
+#questionWrapper {
+  margin: 60px;
+}
+#questionWrapper > p {
+  text-align: left;
+}
+.resultEl {
+  margin: 60px auto auto 150px;
+}
+.resultEl h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+.resultEl p {
+  color: red;
+  font-size: 30px;
+}
+.questionEl {
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 40px;
+}
+.answerDisplay {
+  color: grey;
+  border-top: 5px solid grey;
+  margin: 60px;
+  margin-top: -50px;
+  font-style: italic;
+}
+.modalbody,.intructClass{
+  border: 2px solid hotpink;
+  width: 75%;
+  margin: auto;
+  display: none;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modalContent, .instructbody {
+  background-color: thistle;
+  padding: 20px;
+  border: 2px solid forestgreen;
+  width: 60%;
+  margin: 8% auto;
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+.modalContent p {
+  background: linear-gradient(rgb(70, 157, 185), blue);
+  color: white;
+  padding: 7px;
+  margin-bottom: -10px;
+}
+.modalContent button {
+  margin-top: 20px;
+  border-radius: 10px;
+  background-color: purple;
+  color: white;
+  padding: 10px;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.instructions {
+  background: linear-gradient(red, blue);
+  color: white;
+  font-size: 25px;
+  padding: 10px;
+  display: inline-block;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+.instructbody{
+  background: linear-gradient(#7b2a2a, #3f3fb6);
+  color: white;
+  padding: 0;
+  text-align: center;
+
+}
+.instructbody h2{
+  background: orange;
+  padding: 5px;
+  margin-top: 0;
+  color: black;
+}
+.instructbody p {
+  padding: 5px;
+  margin: 2px;
+}
+.cross{
+  font-size: 20px;
+  color: white;
+  float:right;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+.cross:hover{
+  color: black;
+  cursor: pointer;
+}
+@media (max-width: 1270px) {
+  .resultEl {
+    /* margin: 60px auto auto 150px;
+    border: 1px solid red; */
+    margin: 60px auto;
+  }
+  .options {
+    width: 30%;
+  }
+  #questionWrapper p {
+    font-size: 20px;
+  }
+}
+@media (max-width: 910px) {
+  .resultEl {
+    /* margin: 60px auto auto 150px;
+    border: 1px solid red; */
+    width: 75%;
+  }
+  .whygameover {
+    display: block;
+  }
+  .options {
+    width: 55%;
+  }
+  #questionWrapper p {
+    font-size: 20px;
+  }
+}
+@media (max-width: 850px) {
+  .whygameover {
+    font-size: 25px;
+  }
+  .options {
+    width: 50%;
+  }
+  #questionWrapper p {
+    font-size: 20px;
+  }
+}
+@media (max-width: 710px) {
+  .whygameover {
+    font-size: 20px;
+  }
+  .options {
+    width: 50%;
+  }
+  #questionWrapper p {
+    font-size: 20px;
+  }
+}
+@media (max-width: 575px) {
+  .whygameover {
+    font-size: 16px;
+  }
+
+  .main-wrap {
+    height: 64.3vh;
+    padding: 20px;
+  }
+
+  .submitName {
+    padding: 7px;
+  }
+
+  .options {
+    width: 80%;
+  }
+
+  #questionWrapper p {
+    font-size: 17px;
+  }
+
+  #questionWrapper {
+    width: 80%;
+    margin: 10px auto 60px 10px;
+  }
+}
